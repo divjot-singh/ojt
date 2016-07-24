@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title>OJT</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		var html_page=null;
+		var css_page=null;
+		$(document).ready(function(){
+			$.when(
+					  // Get the HTML
+					  $.get("html_page.html", function(html) {
+					    html_page = html;
+					    //alert(html_page);
+					  }),
+
+					  // Get the CSS
+					  $.get("html_page.css", function(css) {
+					    css_page = css;
+					  }),
+
+					  // Get the JS
+					  $.getScript("html_page.js")
+
+				).then(function() {
+
+					  // All is ready now, so...
+
+					  // Add CSS to page
+					  $("<style />").html(css_page).appendTo("head");
+					 // alert(css_page);
+
+					  // Add HTML to page
+					  //alert(html_page);
+					  $("body").append(html_page);
+				},
+				function(){
+					alert('Sorry, promise was not fulfilled.');
+				});
+		});
+	</script>
+</head>
+<body>
+
+</body>
+</html>
